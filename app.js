@@ -1,6 +1,7 @@
 const SUPABASE_URL = 'https://ddxiwbkwihqpliovblzq.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRkeGl3Ymt3aWhxcGxpb3ZibHpxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU1MDA2OTksImV4cCI6MjA2MTA3NjY5OX0.Sm3M8d4Bft-XAOXjxpNykTgzcdmS2Gzs-tQaA9BEnWM';
-const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 document.getElementById('formBarang').addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -21,7 +22,7 @@ document.getElementById('formBarang').addEventListener('submit', async (e) => {
     keterangan: e.target.keterangan.value
   };
 
-  const { error } = await supabase.from('datang_barang_table').insert([data]);
+  const { error } = await client.from('datang_barang_table').insert([data]);
 
   if (error) {
     alert('Gagal menyimpan!');
